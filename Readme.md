@@ -7,6 +7,7 @@
 2. Install the following software and ensure that they binaries are accessible via your 'PATH' environment variable along with Neovim itself:
    * Git (should also automatically install Curl. If not, install Curl manually).
    * For the Treesitter syntax highlighting plugin to work, you need to install and add LLVM (Clang) C/C++ compiler to your PATH. (All this is done automatically, but refer this link for more information: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#llvm-clang).
+   * Node.js (for the Github Copilot plugin).
    * Many plugins need Python to work. Install a 64-bit Python distribution, make it available through the PATH environment variable, and install the Python Neovim package by using command: "pip install neovim".
    * Optional step - configure Neovim to use your favourite font:
      * Install your favourite font and modify the line containing: 'vim.opt.guifont' in: 'init.lua' to load this font in Neovim.
@@ -31,7 +32,10 @@
    * Open any source code file in Neovim.
    * Execute command: ":LspInstall" - this magically installs the Language Server required for the type of file currently open! You can also manually install the LSP servers for any programming language by navigation within the Mason window (invoked by entering command: ':Mason') and by typing: 'i' (type: 'g?' within the Mason window for more help).
 
-6. Execute command ':checkhealth'.
+6. In Neovim, setup Copilot by entering command: ':Copilot setup' and follow on-screen instructions.
+   * If for some reason, Copilot was not authenticated during setup, you can re-authenticate Copilot by entering command: ':Copilot auth' and following on-screen instructions.
+
+7. Execute command ':checkhealth'.
    * This shows you a list of missing/broken/incompatible dependencies (other programs) that need to be resolved for Neovim to work.
    * Resolve those issues.
    * Restart Neovim.

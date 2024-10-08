@@ -78,6 +78,27 @@ require('lazy').setup({
         'rafamadriz/friendly-snippets',
       }
     },
+
+    -- For Github Copilot
+    {'zbirenbaum/copilot.lua',
+      dependencies = {
+        'zbirenbaum/copilot-cmp',
+      }
+    },
+
+    {'CopilotC-Nvim/CopilotChat.nvim',
+      branch = 'canary',
+      dependencies = {
+        {'zbirenbaum/copilot.lua'}, -- or github/copilot.vim
+        {'nvim-lua/plenary.nvim'}, -- for curl, log wrapper
+      },
+      --build = "make tiktoken", -- Only on MacOS or Linux
+      --opts = {
+        --debug = true, -- Enable debugging
+        -- See Configuration section for rest
+      --},
+      -- See Commands section for default commands if you want to lazy load on them
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -208,6 +229,27 @@ require('mellifluous').setup({
 vim.cmd('colorscheme mellifluous')
 
 ----------------------------------------------------------------------------------
+--                         Github Copilot
+----------------------------------------------------------------------------------
+require('copilot').setup({
+  panel = {enabled = false},
+  suggestion = {enabled = false},
+  filetypes = {
+    yaml = false,
+    markdown = false,
+    help = false,
+    gitcommit = false,
+    gitrebase = false,
+    hgcommit = false,
+    svn = false,
+    cvs = false,
+    ["."] = false,
+  },
+  copilot_node_command = 'node', -- Node.js version must be > 18.x
+  server_opts_overrides = {},
+})
+
+----------------------------------------------------------------------------------
 --                                   LSP
 --                     https://lsp-zero.netlify.app/v4.x/tutorial.html
 ----------------------------------------------------------------------------------
@@ -252,9 +294,16 @@ require('mason-lspconfig').setup({
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+end
+
 cmp.setup({
   sources = {
     {name = 'nvim_lsp'},
+    {name = 'copilot'},
   },
   mapping = cmp.mapping.preset.insert({
     -- Navigate between completion items
@@ -274,6 +323,15 @@ cmp.setup({
     -- Scroll up and down in the completion documentation
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
+    -- Github Copilot <TAB> completion
+    ['<Tab>'] = vim.schedule_wrap(function(fallback)
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        fallback()
+      end
+    end),
   }),
   snippet = {
     expand = function(args)
@@ -373,3 +431,9 @@ vim.diagnostic.config({
 vim.cmd [[autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+----------------------------------------------------------------------------------
+--                         Github Copilot
+----------------------------------------------------------------------------------
+require('copilot_cmp').setup()
+require('CopilotChat').setup()
