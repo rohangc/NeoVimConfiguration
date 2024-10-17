@@ -10,6 +10,9 @@
    * Many plugins need Python to work. Install a 64-bit Python distribution, make it available through the PATH environment variable, and install the Python Neovim package by using command: "pip install neovim".
    * Install a "Nerd Font" from: https://www.nerdfonts.com and configure Neovim to use it:
      * Specify the font by modifying the line containing: 'vim.opt.guifont' in: 'lua/plugins/mellifluous.lua' to load this font in Neovim.
+   * Node.js for Github Copilot.
+   * Optional step - configure Neovim to use your favourite font:
+     * Install your favourite font and modify the line containing: 'vim.opt.guifont' in: 'lua/plugins/mellifluous.lua' to load this font in Neovim.
      * In our configuration file:
        * On Linux: the default terminal font is used.
        * On Windows, the font used in this configuration is: "Cascadia Code" (https://github.com/microsoft/cascadia-code/wiki/Installing-Cascadia-Code) which is installed automatically along with "Windows Terminal".
@@ -31,6 +34,7 @@
    * Install LSP servers for the programming languages of your choice (clangd for the C and C++ family of languages is installed by default).
      * Open any source code file (with the appropriate file extension) in Neovim.
      * Execute command: ":LspInstall" - this magically installs the Language Server required for the type of file currently open! You can also manually install the LSP servers for any programming language by navigation within the Mason window (invoked by entering command: ':Mason') and by typing: 'i' (type: 'g?' within the Mason window for more help).
+   * To setup Copilot, execute this command: ':Copilot setup' and follow on-screen instructions.
 
 6. Execute command ':checkhealth'.
    * This shows you a list of missing/broken/incompatible dependencies (other programs) that need to be resolved for Neovim to work.
