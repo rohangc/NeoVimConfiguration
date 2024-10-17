@@ -2,14 +2,14 @@
 
 ## Installation:
 
-1. Install the latest version of Neovim and optionally, a GUI like 'Neovide'.
+1. Install the latest version of Neovim and although optional, also install a GUI like 'Neovide'.
 
 2. Install the following software and ensure that they binaries are accessible via your 'PATH' environment variable along with Neovim itself:
    * Git (should also automatically install Curl. If not, install Curl manually).
    * For the Treesitter syntax highlighting plugin to work, you need to install and add LLVM (Clang) C/C++ compiler to your PATH. (All this is done automatically, but refer this link for more information: https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#llvm-clang).
    * Many plugins need Python to work. Install a 64-bit Python distribution, make it available through the PATH environment variable, and install the Python Neovim package by using command: "pip install neovim".
-   * Optional step - configure Neovim to use your favourite font:
-     * Install your favourite font and modify the line containing: 'vim.opt.guifont' in: 'lua/plugins/mellifluous.lua' to load this font in Neovim.
+   * Install a "Nerd Font" from: https://www.nerdfonts.com and configure Neovim to use it:
+     * Specify the font by modifying the line containing: 'vim.opt.guifont' in: 'lua/plugins/mellifluous.lua' to load this font in Neovim.
      * In our configuration file:
        * On Linux: the default terminal font is used.
        * On Windows, the font used in this configuration is: "Cascadia Code" (https://github.com/microsoft/cascadia-code/wiki/Installing-Cascadia-Code) which is installed automatically along with "Windows Terminal".
@@ -28,13 +28,19 @@
    * Key-in: "Shift + I" to install any plugins that were not installed.
    * Exit 'Lazy' by typing: ':q'. You can invoke 'Lazy' any time you want by entering command: ':Lazy'.
    * Enter command: ':MasonUpdate' to update the Mason registry (a package manager for LSP, linters, etc.).
-   * Open any source code file in Neovim.
-   * Execute command: ":LspInstall" - this magically installs the Language Server required for the type of file currently open! You can also manually install the LSP servers for any programming language by navigation within the Mason window (invoked by entering command: ':Mason') and by typing: 'i' (type: 'g?' within the Mason window for more help).
+   * Install LSP servers for the programming languages of your choice (clangd for the C and C++ family of languages is installed by default).
+     * Open any source code file (with the appropriate file extension) in Neovim.
+     * Execute command: ":LspInstall" - this magically installs the Language Server required for the type of file currently open! You can also manually install the LSP servers for any programming language by navigation within the Mason window (invoked by entering command: ':Mason') and by typing: 'i' (type: 'g?' within the Mason window for more help).
 
 6. Execute command ':checkhealth'.
    * This shows you a list of missing/broken/incompatible dependencies (other programs) that need to be resolved for Neovim to work.
    * Resolve those issues.
    * Restart Neovim.
+
+## Note:
+
+1. The default 'leader' key: '\\' has been replaced with a space (' ').
+
 
 ## Extras and Useful Links:
 ### Clang/Clangd:

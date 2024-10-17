@@ -81,7 +81,6 @@ vim.keymap.set('n', '<C-p>', ':tprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<F5>', ':cprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<F6>', ':cnext<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<2-LeftMouse>', '*', { noremap = true, silent = true })
-vim.keymap.set('n', '<F11>', ':term<CR>', { noremap = true, silent = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({
