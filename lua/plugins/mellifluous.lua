@@ -2,7 +2,13 @@ return {
     {'ramojus/mellifluous.nvim',
         opts = {
             dim_inactive = false,
+
             colorset = 'alduin',
+            --colorset = 'kanagawa_dragon',
+            --colorset = 'mellifluous',
+            --colorset = 'mountain',
+            --colorset = 'tender',
+
             styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
                 main_keywords = {},
                 other_keywords = {},
@@ -33,9 +39,9 @@ return {
             },
             plugins = {
                 cmp = true,
-                nvim_tree = {
+
+                gitsigns = {
                     enabled = true,
-                    show_root = false,
                 },
                 lazy = {
                     enabled = true,
@@ -43,26 +49,36 @@ return {
                 mason = {
                     enabled = true,
                 },
+                nvim_tree = {
+                    enabled = true,
+                    show_root = false,
+                },
                 telescope = {
                     enabled = true,
                     nvchad_like = true,
                 },
                 treesitter = {
                     enabled = true,
-                }
+                },
             },
         },
 
         init = function()
-            -- My Colour scheme
+            -- Light/dark theme
+            -- vim.opt.background('light')
+
+            -- Colour scheme
             vim.cmd("colorscheme mellifluous")
 
-            -- My font (on Windows only)
-            if vim.fn.has('gui_running') == 1 and (vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1) then
-                -- The default Windows font.
-                -- Install your favourite font and edit the following line (my favourite is: 'Fira Code').
-                vim.opt.guifont = 'Cascadia Code:h11'
-                --vim.opt.guifont = 'Fira Code:h11.5'
+            -- Font (available only when running a GUI)
+            if vim.fn.has('gui_running') == 1 then
+                if (vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1) then
+                  -- The default Windows font.
+                  -- Install your favourite font and edit the following line (my favourite is: 'Fira Code').
+                  vim.opt.guifont = 'Cascadia Code:h11'
+                  -- https://github.com/mietzen/juliamono-nerd-font
+                  --vim.opt.guifont = 'JuliaMono Nerd Font:h12.25'
+                end
             end
         end
     },

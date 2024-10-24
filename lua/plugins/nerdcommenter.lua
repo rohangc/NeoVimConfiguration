@@ -1,3 +1,3 @@
 return {
-    {'scrooloose/nerdcommenter'},
+    {'preservim/nerdcommenter'},
 }

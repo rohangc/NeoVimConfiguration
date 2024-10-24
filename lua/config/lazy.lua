@@ -18,8 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = '\\'
+vim.g.maplocalleader = '\\'
 
 -- Disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
@@ -81,7 +81,6 @@ vim.keymap.set('n', '<C-p>', ':tprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<F5>', ':cprev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<F6>', ':cnext<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<2-LeftMouse>', '*', { noremap = true, silent = true })
-vim.keymap.set('n', '<F11>', ':term<CR>', { noremap = true, silent = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({
