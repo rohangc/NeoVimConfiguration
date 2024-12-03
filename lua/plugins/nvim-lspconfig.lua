@@ -16,7 +16,7 @@ return{
             'zbirenbaum/copilot-cmp',
             'zbirenbaum/copilot.lua',
             'nvim-lua/plenary.nvim',
-            {'CopilotC-Nvim/CopilotChat.nvim', branch = 'canary',},
+            'CopilotC-Nvim/CopilotChat.nvim',
         },
 
         init = function()
