@@ -24,6 +24,7 @@
      * For some reason, the Treesiter plugin cannot find standard C/C++ header files with the LLVM Clang installation (https://clangd.llvm.org/troubleshooting#cant-find-standard-library-headers-map-stdioh-etc).
      * Hence, install Visual Studio (even the free "Community Edition" will suffice).
      * There is no need to add 'cl.exe' to 'PATH'. Treesitter somehow seems to find the header files it needs from the VS installation directory.
+   * Node.js for Github Copilot.
 
 3. Install a "Nerd Font" from: https://www.nerdfonts.com and configure Neovim to use it:
    * Specify the font by modifying the line containing: 'vim.opt.guifont' in: 'lua/config/options.lua'.
@@ -60,6 +61,8 @@
      * Open any source file (with the appropriate file extension) in Neovim.
      * Execute command: ```:LspInstall``` - this installs the Language Server required for the type of file currently open.
        * You can also manually install LSP servers for any other programming language by navigation within the Mason window (invoked by entering command: ```:Mason```) and by typing: ```i``` (type: ```g?``` within the Mason window for more help).
+   * To activate Copilot, execute this command: ```:Copilot auth``` and follow on-screen instructions.
+
 
 7. Execute command ```:checkhealth```
    * This shows you a list of missing/broken/incompatible dependencies (other programs) that need to be resolved for Neovim to work.
