@@ -11,9 +11,15 @@
    * Python (64-bit) and its 'Neovim' package (enter this command in the shell prompt: "pip install neovim").
    * For the 'Telescope' plugin:
      * RipGrep (https://github.com/BurntSushi/ripgrep).
-       * On Windows, enter command: winget install BurntSushi.ripgrep.MSVC
+       * On Windows, enter command:
+         ```bash
+         winget install BurntSushi.ripgrep.MSVC
+         ```
      * Fd (https://github.com/sharkdp/fd).
-       * On Windows, enter command: winget install sharkdp.fd
+       * On Windows, enter command:
+         ```bash
+         winget install sharkdp.fd
+         ```
    * On Windows:
      * For some reason, the Treesiter plugin cannot find standard C/C++ header files with the LLVM Clang installation (https://clangd.llvm.org/troubleshooting#cant-find-standard-library-headers-map-stdioh-etc).
      * Hence, install Visual Studio (even the free "Community Edition" will suffice).
@@ -70,3 +76,17 @@
 1. Clangd documentation: https://clangd.llvm.org/installation
 2. Force Cmake to build your project using all available cores on your system: https://blog.kitware.com/cmake-building-with-all-your-cores
 3. Use Clang (instead of MSVC) to build projects in Visual Studio: https://docs.microsoft.com/en-us/cpp/build/clang-support-msbuild
+
+### Git:
+1. To configure git to use a third party diff and merge tool for the 'git difftool' command (p4diff and p4merge, for example):
+   ```bash
+   git config --global diff.tool p4merge
+   git config --global difftool.p4merge.cmd 'p4merge.exe $LOCAL $REMOTE'
+   git config --global difftool.prompt false
+
+   git config --global merge.tool p4merge
+   git config --global mergetool.p4merge.cmd 'p4merge.exe $BASE $LOCAL $REMOTE $MERGED'
+   git config --global mergetool.prompt false
+   git config --global mergetool.trustExitCode false
+   git config --global mergetool.keepBackup false
+   ```
