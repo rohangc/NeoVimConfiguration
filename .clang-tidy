@@ -1,5 +1,5 @@
-Checks: "-*,\
-    bugprone-*,\
+Checks: "bugprone-*,\
+    -bugprone-argument-comment,\
     -bugprone-easily-swappable-parameters,\
     -bugprone-reserved-identifier,\
     cppcoreguidelines-*,\

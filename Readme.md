@@ -8,12 +8,18 @@
 2. Install the following software and ensure that they binaries are accessible via your 'PATH':
    * Git and Curl (on Windows, installing the official Git distribution also installs Curl).
    * If a C/C++ compiler is not available in 'PATH', install the Clang C/C++ compiler for the Treesitter syntax highlighting plugin (https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#llvm-clang).
-   * Python (64-bit) and its 'Neovim' package (enter this command in the shell prompt: "pip install neovim").
+   * Python (64-bit) and its 'Neovim' package (enter this command in the shell prompt: ```pip install neovim```).
    * For the 'Telescope' plugin:
      * RipGrep (https://github.com/BurntSushi/ripgrep).
-       * On Windows, enter command: winget install BurntSushi.ripgrep.MSVC
+       * On Windows, enter command:
+         ```bash
+         winget install BurntSushi.ripgrep.MSVC
+         ```
      * Fd (https://github.com/sharkdp/fd).
-       * On Windows, enter command: winget install sharkdp.fd
+       * On Windows, enter command:
+         ```bash
+         winget install sharkdp.fd
+         ```
    * On Windows:
      * For some reason, the Treesiter plugin cannot find standard C/C++ header files with the LLVM Clang installation (https://clangd.llvm.org/troubleshooting#cant-find-standard-library-headers-map-stdioh-etc).
      * Hence, install Visual Studio (even the free "Community Edition" will suffice).
@@ -32,22 +38,30 @@
 
 5. Invoke a Bash shell with access to Git (on Windows, this is called: "Git Bash"):
    * Navigate to the directory where the cloned files are located.
-   * Execute the script: 'NvimConfigure.sh'.
+   * Execute the script:
+     ```bash
+     NvimConfigure.sh
+     ```
    * Troubleshooting on Linux - if Bash complains that the script file was not found even though the file exists in the directory:
-     * Change the file encoding of the shell script from DOS to Unix using command: "dos2unix NvimConfigure.sh".
-     * Set execute permissions on the shell script by executing command: "chmod 555 NvimConfigure.sh".
-
+     * Change the file encoding of the shell script from DOS to Unix using command:
+     ```bash
+     dos2unix NvimConfigure.sh
+     ```
+     * Set execute permissions on the shell script by executing command:
+     ```bash
+     chmod 555 NvimConfigure.sh"
+     ```
 6. Invoke Neovim - it should automatically start installing plugins using the 'lazy.nvim' plugin manager.
-   * In the 'lazy.nvim' plugin manager GUI, key in: "Shift + U" multiple times to update all installed plugins.
-   * Exit 'lazy.nvim' by entering: ':q'. You can re-invoke 'lazy.nvim' any time you want by entering command: ':Lazy'.
-   * Enter command: ':MasonUpdate' to update the Mason registry (a package manager for LSP, linters, etc.).
+   * In the 'lazy.nvim' plugin manager GUI, key in: ```Shift + U``` multiple times to update all installed plugins.
+   * Exit 'lazy.nvim' by entering: ```:q```. You can re-invoke 'lazy.nvim' any time you want by entering command: ```:Lazy```.
+   * Enter command: ```:MasonUpdate``` to update the Mason registry (a package manager for LSP, linters, etc.).
      * In this Neovim configuration, we don't install any plugins for DAP, linters and formatters. 'Mason' is used to install and manage LSP servers only.
    * The Clangd Language server for C/C++ is installed by default. To install LSP servers of other pragramming languages.
      * Open any source file (with the appropriate file extension) in Neovim.
-     * Execute command: ":LspInstall" - this installs the Language Server required for the type of file currently open.
-       * You can also manually install LSP servers for any other programming language by navigation within the Mason window (invoked by entering command: ':Mason') and by typing: 'i' (type: 'g?' within the Mason window for more help).
+     * Execute command: ```:LspInstall``` - this installs the Language Server required for the type of file currently open.
+       * You can also manually install LSP servers for any other programming language by navigation within the Mason window (invoked by entering command: ```:Mason```) and by typing: ```i``` (type: ```g?``` within the Mason window for more help).
 
-7. Execute command ':checkhealth'.
+7. Execute command ```:checkhealth```
    * This shows you a list of missing/broken/incompatible dependencies (other programs) that need to be resolved for Neovim to work.
    * Resolve those issues.
    * Restart Neovim.
@@ -70,3 +84,17 @@
 1. Clangd documentation: https://clangd.llvm.org/installation
 2. Force Cmake to build your project using all available cores on your system: https://blog.kitware.com/cmake-building-with-all-your-cores
 3. Use Clang (instead of MSVC) to build projects in Visual Studio: https://docs.microsoft.com/en-us/cpp/build/clang-support-msbuild
+
+### Git:
+1. To configure git to use a third party diff and merge tool for the 'git difftool' command (p4diff and p4merge, for example):
+   ```bash
+   git config --global diff.tool p4merge
+   git config --global difftool.p4merge.cmd 'p4merge.exe $LOCAL $REMOTE'
+   git config --global difftool.prompt false
+
+   git config --global merge.tool p4merge
+   git config --global mergetool.p4merge.cmd 'p4merge.exe $BASE $LOCAL $REMOTE $MERGED'
+   git config --global mergetool.prompt false
+   git config --global mergetool.trustExitCode false
+   git config --global mergetool.keepBackup false
+   ```
