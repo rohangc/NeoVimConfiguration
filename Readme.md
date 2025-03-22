@@ -29,6 +29,7 @@
              ```bash
              winget install sharkdp.fd
              ```
+   1. Node.js for Github Copilot.
 1. Install a "Nerd Font" from: https://www.nerdfonts.com and configure Neovim to use it:
    1. Specify the font by modifying the line containing: 'vim.opt.guifont' in: 'lua/config/options.lua'.
    1. The default font in our configuration file:
@@ -64,6 +65,7 @@
      1. Open any source file (with the appropriate file extension) in Neovim.
      1. Execute command: ```:LspInstall``` - this installs the Language Server required for the type of file currently open.
         * You can also manually install LSP servers for any other programming language by navigation within the Mason window (invoked by entering command: ```:Mason```) and by typing: ```i``` (type: ```g?``` within the Mason window for more help).
+   1. To activate Copilot, execute this command: ```:Copilot auth``` and follow on-screen instructions.
 
 1. Execute command ```:checkhealth```
    1. This shows you a list of missing/broken/incompatible dependencies (other programs) that need to be resolved for Neovim to work.
