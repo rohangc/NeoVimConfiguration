@@ -1,5 +1,5 @@
 -- Emulate Windows behaviour also for cut/copy/paste
-vim.cmd("source $VIMRUNTIME/mswin.vim")
+vim.cmd("source $VIMRUNTIME/scripts/mswin.vim")
 
 -- Load global options
 require('config.options')
