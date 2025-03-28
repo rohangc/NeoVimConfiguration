@@ -18,9 +18,5 @@ fi
 mkdir -p "$init_lua_dir"
 
 # Copy the 'init.lua' file to the appropriate destination
-mv -f ./lua "$init_lua_dir/lua"
-mv -f ./init.lua "$init_lua_dir/init.lua"
-
-# Delete self.
-rm -f NvimConfigure.sh
-rm -f Readme.md
+cp -rf ./lua "$init_lua_dir/lua"
+cp -f ./init.lua "$init_lua_dir/init.lua"
