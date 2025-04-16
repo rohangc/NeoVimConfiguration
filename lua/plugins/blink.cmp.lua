@@ -1,7 +1,22 @@
 return {
   'saghen/blink.cmp',
-  -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+      -- optional: provides snippets for the snippet source
+      'rafamadriz/friendly-snippets',
+      {
+          'fang2hou/blink-copilot',
+          dependencies = {
+              {
+                  'zbirenbaum/copilot.lua',
+                  opts = {
+                      -- Disable features of copilot that may conflict with blink.cmp
+                      suggestion = { enabled = false },
+                      panel = { enabled = false },
+                  }
+              },
+          }
+      },
+  },
 
   -- use a release tag to download pre-built binaries ('*' for the latest version)
   --version = '1.*',
@@ -40,7 +55,14 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+      providers = {
+        copilot = {
+          name = 'copilot',
+          module = 'blink-copilot',
+          async = true,
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
